@@ -34,7 +34,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="277" y="-1032"/>
+            <point key="canvasLocation" x="277" y="-1044"/>
         </scene>
         <!--Profile-->
         <scene sceneID="5z1-YZ-iu2">
@@ -92,15 +92,15 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="R4V-o2-3GG" kind="relationship" relationship="viewControllers" id="r4R-Ou-4Iu"/>
+                        <segue destination="klO-pk-Npg" kind="relationship" relationship="viewControllers" id="r4R-Ou-4Iu"/>
                         <segue destination="jGd-mc-8hy" kind="relationship" relationship="viewControllers" id="tAK-Wh-AuK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhw-mD-YmG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="323" y="-398"/>
+            <point key="canvasLocation" x="277" y="-362"/>
         </scene>
-        <!--Shop-->
+        <!--Shop VC-->
         <scene sceneID="0be-EN-GoG">
             <objects>
                 <viewController id="R4V-o2-3GG" customClass="ShopViewController" customModule="Vader" customModuleProvider="target" sceneMemberID="viewController">
@@ -113,7 +113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dis da shop VC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSY-iR-MqC">
-                                <rect key="frame" x="50" y="239" width="117" height="21"/>
+                                <rect key="frame" x="47" y="337" width="117" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -121,11 +121,43 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shop" id="JSu-Ie-3og"/>
+                    <navigationItem key="navigationItem" title="Shop VC" id="Xf6-KS-FAp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="i4x-My-L8d">
+                            <connections>
+                                <segue destination="Jco-H2-myg" kind="presentation" id="E9R-lZ-ape"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgh-ih-Xfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="963" y="-1008"/>
+            <point key="canvasLocation" x="1652" y="-1044"/>
+        </scene>
+        <!--Shop Post View Controller-->
+        <scene sceneID="KEs-Xw-kkV">
+            <objects>
+                <viewController id="Jco-H2-myg" customClass="ShopPostViewController" customModule="Vader" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WYo-xd-ZrS"/>
+                        <viewControllerLayoutGuide type="bottom" id="7aa-CO-Wu3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kGe-Hb-40A">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dis dat young &quot;Shop Post VC&quot; " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAB-jI-A9N">
+                                <rect key="frame" x="10" y="241" width="234" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1UY-2j-QNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2343" y="-1044"/>
         </scene>
         <!--Profile-->
         <scene sceneID="pfR-ch-S3l">
@@ -145,6 +177,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBz-k1-aZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="277" y="384"/>
+        </scene>
+        <!--Shop-->
+        <scene sceneID="Wqt-Dn-DmZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="klO-pk-Npg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Shop" id="JSu-Ie-3og"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S9Q-QK-EaM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="R4V-o2-3GG" kind="relationship" relationship="rootViewController" id="iFg-ZD-aa3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0qc-lx-B2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973" y="-1044"/>
         </scene>
     </scenes>
 </document>

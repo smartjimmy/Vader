@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60333F1C1C30A9ED001572C5 /* ShopPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60333F1B1C30A9ED001572C5 /* ShopPostViewController.swift */; };
 		60CB8DBC1C2F44B000F1F022 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CB8DBB1C2F44B000F1F022 /* AppDelegate.swift */; };
 		60CB8DBE1C2F44B000F1F022 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CB8DBD1C2F44B000F1F022 /* ViewController.swift */; };
 		60CB8DC11C2F44B000F1F022 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60CB8DBF1C2F44B000F1F022 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60333F1B1C30A9ED001572C5 /* ShopPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopPostViewController.swift; sourceTree = "<group>"; };
 		60CB8DB81C2F44B000F1F022 /* Vader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60CB8DBB1C2F44B000F1F022 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60CB8DBD1C2F44B000F1F022 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				60CB8DBB1C2F44B000F1F022 /* AppDelegate.swift */,
 				60CB8DBD1C2F44B000F1F022 /* ViewController.swift */,
 				60CB8E151C2FB36000F1F022 /* ShopViewController.swift */,
+				60333F1B1C30A9ED001572C5 /* ShopPostViewController.swift */,
 				60CB8E131C2F576000F1F022 /* ProfileViewController.swift */,
 				60CB8DBF1C2F44B000F1F022 /* Main.storyboard */,
 				60CB8DC21C2F44B000F1F022 /* Assets.xcassets */,
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60CB8E161C2FB36000F1F022 /* ShopViewController.swift in Sources */,
+				60333F1C1C30A9ED001572C5 /* ShopPostViewController.swift in Sources */,
 				60CB8E141C2F576000F1F022 /* ProfileViewController.swift in Sources */,
 				60CB8DBE1C2F44B000F1F022 /* ViewController.swift in Sources */,
 				60CB8DBC1C2F44B000F1F022 /* AppDelegate.swift in Sources */,
@@ -394,6 +398,7 @@
 				60CB8DCC1C2F44B000F1F022 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
