@@ -12,16 +12,20 @@ import Parse
 class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    @IBOutlet weak var shopPhoto1: UIImageView!
     @IBOutlet weak var itemNameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
-//    
-//    var imagePicker: UIImagePicker!
-//    
+    
+    var imagePicker: UIImagePickerController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
     }
     
     //Text Fields logic and jumps
@@ -54,7 +58,7 @@ class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePick
             } else {
                 if self.priceTextField.text!.isEmpty {
                     noPriceAlert()
-
+                    
                 } else {
                     createShopPost()
                 }
@@ -81,7 +85,76 @@ class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
     }
     
+    //delegate function for imagePicker
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
+        
+        print("Got an image")
+        if let pickedImage:UIImage = (info[UIImagePickerControllerOriginalImage]) as? UIImage {
+            let selectorToCall = Selector("imageWasSavedSuccessfully:didFinishSavingWithError:context:")
+            UIImageWriteToSavedPhotosAlbum(pickedImage, self, selectorToCall, nil)
+        }
+        
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
     
+    }
+    
+    func imageWasSavedSuccessfully(image: UIImage, didFinishSavingWithError error: NSError!, context: UnsafeMutablePointer<()>) {
+        print("image was saved!")
+        if let theError = error {
+            print("An error ocurred while attempting to save the image = \(theError)")
+        } else {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.shopPhoto1.image  = image
+            })
+        }
+        
+    }
+    
+    //IBAction for tapping camera and launching image picker
+    @IBAction func tappedCamera1(sender: UITapGestureRecognizer) {
+        if(UIImagePickerController.isSourceTypeAvailable(.Camera)) {
+//            if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+                imagePicker.allowsEditing = false
+                imagePicker.sourceType = .Camera
+                imagePicker.cameraCaptureMode = .Photo
+                presentViewController(imagePicker, animated: true, completion: nil)
+//                
+//            }
+//            else {
+//                rearCameraAlert()
+//            }
+        } else {
+            cameraInaccessableAlert()
+        }
+    }
+    
+    //alert for empty item name text field
+    func cameraInaccessableAlert() {
+        let alert = UIAlertController(title: "Camera inaccessable", message: "Application cannot access the camera.", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) {
+            UIAlertAction in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    //alert for no rear Camera
+    func rearCameraAlert() {
+        let alert = UIAlertController(title: "Rear camera unavailable", message: "Application cannot access the rear camera.", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) {
+            UIAlertAction in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     //alert for empty item name text field
     func noItemAlert() {
@@ -94,7 +167,7 @@ class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         alert.addAction(cancelAction)
         
-       self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     //alert for empty description text field
