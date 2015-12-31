@@ -11,21 +11,48 @@ import Parse
 
 class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var activityIndicator = UIActivityIndicatorView()
+    var pictureTaken:Bool  = false
     
     @IBOutlet weak var shopPhoto1: UIImageView!
     @IBOutlet weak var itemNameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     
-    var imagePicker: UIImagePickerController!
+    //IBAction for tapping camera and launching image picker
+    @IBAction func tappedCamera1(sender: UITapGestureRecognizer) {
+        
+        var imagePicker = UIImagePickerController()
+        
+        if(UIImagePickerController.isSourceTypeAvailable(.Camera)) {
+            //            if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            imagePicker.delegate = self
+            
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = .Camera
+            imagePicker.cameraCaptureMode = .Photo
+            presentViewController(imagePicker, animated: true, completion: nil)
+            
+            
+        } else {
+            cameraInaccessableAlert()
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        shopPhoto1.image = image
+//        pictureTaken == false
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
     }
     
     //Text Fields logic and jumps
@@ -47,20 +74,27 @@ class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePick
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    
     //Post Button tapped
     @IBAction func postTapped(sender: AnyObject) {
         
-        if self.itemNameTextField.text!.isEmpty {
-            noItemAlert()
+        if self.shopPhoto1.image == nil {
+//        if pictureTaken = false {
+            noPhoto()
         } else {
-            if self.descriptionTextField.text!.isEmpty {
-                noDescriptionAlert()
+            if self.itemNameTextField.text!.isEmpty {
+                noItemAlert()
             } else {
-                if self.priceTextField.text!.isEmpty {
-                    noPriceAlert()
-                    
+                if self.descriptionTextField.text!.isEmpty {
+                    noDescriptionAlert()
                 } else {
-                    createShopPost()
+                    if self.priceTextField.text!.isEmpty {
+                        noPriceAlert()
+                        
+                    } else {
+                        createShopPost()
+                    }
                 }
             }
         }
@@ -68,7 +102,25 @@ class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     // function to save shoping post to parse
     func createShopPost() {
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
+        
         let shopPost = PFObject(className: "ShopPost")
+        
+        // Photo upload code
+        let imageData = UIImageJPEGRepresentation(shopPhoto1.image!, 0.3)
+        let imageFile = PFFile(name: "shopImage.png", data: imageData!)
+        
+        shopPost["imageFile"] = imageFile
+        
         shopPost.setObject(self.itemNameTextField.text!, forKey: "itemName")
         shopPost.setObject(self.descriptionTextField.text!, forKey: "itemDescription")
         shopPost.setObject(self.priceTextField.text!, forKey: "itemPrice")
@@ -76,6 +128,10 @@ class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         shopPost.saveInBackgroundWithBlock { (saved:Bool, error:NSError?) -> Void in
             if saved == true {
+                //stop loading animation and stop ignoring user
+                self.activityIndicator.stopAnimating()
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                
                 self.dismissViewControllerAnimated(true, completion: nil)
                 print("Dat youn data saved Do")
             } else {
@@ -85,47 +141,22 @@ class ShopPostViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
     }
     
-    //delegate function for imagePicker
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
+    
+    
+    
+    
+    //alert for no item photo
+    func noPhoto() {
+        let alert = UIAlertController(title: "No Photo", message: "Please provide at least 1 photo of your item.", preferredStyle: .Alert)
         
-        print("Got an image")
-        if let pickedImage:UIImage = (info[UIImagePickerControllerOriginalImage]) as? UIImage {
-            let selectorToCall = Selector("imageWasSavedSuccessfully:didFinishSavingWithError:context:")
-            UIImageWriteToSavedPhotosAlbum(pickedImage, self, selectorToCall, nil)
+        let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) {
+            UIAlertAction in
+            alert.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-    
-    }
-    
-    func imageWasSavedSuccessfully(image: UIImage, didFinishSavingWithError error: NSError!, context: UnsafeMutablePointer<()>) {
-        print("image was saved!")
-        if let theError = error {
-            print("An error ocurred while attempting to save the image = \(theError)")
-        } else {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.shopPhoto1.image  = image
-            })
-        }
+        alert.addAction(cancelAction)
         
-    }
-    
-    //IBAction for tapping camera and launching image picker
-    @IBAction func tappedCamera1(sender: UITapGestureRecognizer) {
-        if(UIImagePickerController.isSourceTypeAvailable(.Camera)) {
-//            if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
-                imagePicker.allowsEditing = false
-                imagePicker.sourceType = .Camera
-                imagePicker.cameraCaptureMode = .Photo
-                presentViewController(imagePicker, animated: true, completion: nil)
-//                
-//            }
-//            else {
-//                rearCameraAlert()
-//            }
-        } else {
-            cameraInaccessableAlert()
-        }
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     //alert for empty item name text field
