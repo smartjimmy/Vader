@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 
+// ball so hard
+
 class ShopViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var shopTableView: UITableView!
