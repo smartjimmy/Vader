@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6021A9A21C40629B000D8443 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6021A9A11C40629B000D8443 /* ParseUI.framework */; };
 		603288971C387E1A00F86076 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603288961C387E1A00F86076 /* ShopDetailViewController.swift */; };
 		60333F1C1C30A9ED001572C5 /* ShopPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60333F1B1C30A9ED001572C5 /* ShopPostViewController.swift */; };
 		60CB8DBC1C2F44B000F1F022 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CB8DBB1C2F44B000F1F022 /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6021A9A11C40629B000D8443 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		603288961C387E1A00F86076 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		60333F1B1C30A9ED001572C5 /* ShopPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopPostViewController.swift; sourceTree = "<group>"; };
 		60CB8DB81C2F44B000F1F022 /* Vader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +81,7 @@
 			files = (
 				60CB8DE81C2F45C700F1F022 /* libsqlite3.tbd in Frameworks */,
 				60CB8DE61C2F45BC00F1F022 /* libz.tbd in Frameworks */,
+				6021A9A21C40629B000D8443 /* ParseUI.framework in Frameworks */,
 				60CB8E101C2F533100F1F022 /* FBSDKLoginKit.framework in Frameworks */,
 				60CB8E0F1C2F533100F1F022 /* FBSDKCoreKit.framework in Frameworks */,
 				60CB8E0B1C2F52F500F1F022 /* ParseFacebookUtilsV4.framework in Frameworks */,
@@ -151,6 +154,7 @@
 		60CB8E121C2F538E00F1F022 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6021A9A11C40629B000D8443 /* ParseUI.framework */,
 				60CB8DE71C2F45C700F1F022 /* libsqlite3.tbd */,
 				60CB8DE51C2F45BC00F1F022 /* libz.tbd */,
 				60CB8E041C2F52F500F1F022 /* Bolts.framework */,

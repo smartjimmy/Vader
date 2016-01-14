@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ShopDetailViewController: UIViewController {
     
@@ -17,14 +18,14 @@ class ShopDetailViewController: UIViewController {
     @IBOutlet weak var shopDetailImage: UIImageView!
     @IBOutlet weak var sellerProfileDetailImage: UIImageView!
     
+//    var imageFile: PFFile!
     var itemName = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    self.itemNameDetailLabel.text = self.itemName
-
-        // Do any additional setup after loading the view.
+        self.itemNameDetailLabel.text = self.itemName
+        
         
         
     }

@@ -87,6 +87,18 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
+        </array>
+    <key>UIApplicationShortcutItems</key>
+    <array>
+        <dict>
+            <key>UIApplicationShortcutItemIconType</key>
+            <string>UIApplicationShortcutIconTypeAdd</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Post new item</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>com.jimmy.Vader.postitem</string>
+        </dict>
+    </array>
+    
 </dict>
 </plist>

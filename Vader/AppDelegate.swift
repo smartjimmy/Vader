@@ -63,6 +63,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        
+        print("Shortcut Item Tapped")
+        
+        if (shortcutItem.type == "com.jimmy.Vader.postitem") {
+            
+        }
+    }
+    
+//    func presentPostVC() {
+//        let postVC = ShopPostViewController()
+//        self.presentViewController(postVC, animated: true, completion: nil)
+//    }
 
 }
 

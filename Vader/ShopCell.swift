@@ -7,11 +7,13 @@
 
 
 import UIKit
+import Parse
+import ParseUI
 
 //custom cell for shop cells
 class ShopCell: UITableViewCell {
 
-    @IBOutlet weak var shopImage: UIImageView!
+    @IBOutlet weak var shopImage: PFImageView!
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var sellerNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
